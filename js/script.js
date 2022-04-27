@@ -3,7 +3,7 @@ let pulando = false;
 let score = 0;
 let position = 0;
 let scoreInterval;
-let end = document.getElementById('elearnd');
+let end = document.getElementById('end');
 let scr = document.querySelector(".score")
 let makeCacto;
 
@@ -22,11 +22,12 @@ function start(){
 	document.addEventListener('keypress', pular);
 	document.querySelector('#btn').style.display = "none"
 	createCacto();
-	scoreInterval = setInterval(calcscore,1000);
+	scoreInterval = setInterval(calcscore,100);
+
 }
 function calcscore(){
 	score++;
-	console.log(score);
+	document.querySelector(".value").innerHTML = `Score: ${score}`
 }
 
 
@@ -42,10 +43,10 @@ function pular(event){
 function jump() {
 	pulando = true;
 	let upInterval = setInterval(() =>{
-		if(position >= 150){
+		if (position >= 150){
 			clearInterval(upInterval)
 			let downInterval = setInterval(() => {
-			position -= 12;
+			position -= 20;
 			dino.style.bottom = position + 'px';
 			if (position <= 20){
 				clearInterval(downInterval)
@@ -55,7 +56,7 @@ function jump() {
 
 		}
 		else{
-		position +=20;
+		position +=12;
 		dino.style.bottom = position + 'px';
 		}
 	}, 20)
@@ -63,25 +64,26 @@ function jump() {
 
 function createCacto() {
 	const cacto = document.createElement('div');
-	let cactopos = 1000;
 	let randomTime = Math.random() * 3000;
-
-	cacto.style.left = cactopos + 'px';
+	let cactopos = 800;
+	cacto.style.left = 800 + 'px';
 	cacto.classList.add('cacto');
 	bg.appendChild(cacto);
 
 	let leftInterval = setInterval(() => {
-			if(cactopos < -60){
-				bg.removeChild(cacto);
+			if(cactopos < -0){
 				clearInterval(leftInterval);
-			}else if(cactopos > 0 && cactopos < 60 && position < 60){
+				bg.removeChild(cacto);
+
+			}else if(cactopos > 0 && cactopos < 60 && position < 60 && cactopos){
 				//game over
 				//debugger
-				gameOver();
 				clearInterval(leftInterval);
 				clearInterval(makeCacto);
+				gameOver();
+				console.log(cactopos)
 			}else{
-				cactopos -=10;
+				cactopos -=12;
 				cacto.style.left = cactopos + 'px';
 			}
 	}, 20)
@@ -92,10 +94,11 @@ function createCacto() {
 
 
 function gameOver(){
+	clearInterval(scoreInterval);
 	dino.remove()
+	document.querySelector(".value").innerHTML = ""
 	end.style.display = "block";
 	scr.style.display = "block"
 	scr.innerHTML = `A sua pontuação foi ${score}`
 	bg.remove()
-	clearInterval(scoreInterval);
 }

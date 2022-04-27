@@ -3,8 +3,8 @@
 	left: 20px;
 	height: 60px;
 	width: 60px;
-	bottom: 0;
-	background-image: url(dino.png);
+	bottom: 4%;
+	background-image: url(../img/dino.png);
 	position: absolute;
 }
 
@@ -13,7 +13,7 @@
 	width: 30px;
 	position: absolute;
 	bottom: 0;
-	background-image: url(cactus.png);
+	background-image: url(../img/cactus.png);
 }
 
 @keyframes slideright {
@@ -27,13 +27,13 @@
 
 .background{
 	position:absolute;
-	bottom:0;
-	background-image: url(background.png);
+	bottom:35%;
+	background-image: url(../img/background.png);
 	background-repeat: repeat-x;
 	animation: slideright 1100s infinite linear;
-	width: 100%;
-	height: 200px;
-	background-color: blanchedalmond;
+	width: 70%;
+	height: 220px;
+	border: 2px solid black;
 }
 
 
@@ -86,4 +86,12 @@ a.button7{
 }
 #end a{
 	margin-left: 46%;
+}
+
+.value{
+	right: 20%;
+	position: absolute;
+	font-family: "Colibri", "Comic Sans";
+	color: darkslategray;
+	top: 23%;
 }
